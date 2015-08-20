@@ -86,6 +86,19 @@ testem ci
 
 Enjoy!
 
+## Advanced Testem config
+
+other config for Testem will go into `testem.json`:
+
+```clj
+(setup-testem :namespaces '[app.test]
+              :testem-config {:launch_in_ci ["Firefox" "Chromium"]})
+```
+
+More about Testem config:
+
+https://github.com/airportyh/testem/blob/master/docs/config_file.md
+
 ## License
 
 Copyright © 2015 Hoang Minh Thang
