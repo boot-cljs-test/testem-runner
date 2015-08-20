@@ -18,7 +18,7 @@
   [n namespaces    NS   #{sym} "Namespaces whose tests will be run."
    c testem-config OPTS edn    "testem configuration."]
   (comp (core/with-pre-wrap [fileset]
-          (let [test-dir (core/temp-dir!)
+          (let [test-dir (core/tmp-dir!)
                 data     (-> testem-config
                            (merge {:framework "custom"
                                    :src_files ["testem_runner.js"]
@@ -33,7 +33,7 @@
               (core/add-resource test-dir)
               (core/commit!))))
         (core/with-pre-wrap [fileset]
-          (let [test-dir (core/temp-dir!)
+          (let [test-dir (core/tmp-dir!)
                 data     {:require  (conj (vec namespaces)
                                           'boot-cljs-test.testem-runner)
                           :init-fns
