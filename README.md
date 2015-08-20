@@ -54,10 +54,8 @@ boot.user=> (doc setup-testem)
 in your `build.boot`:
 
 ```clj
-(deftask cljs-auto-test []
-  (comp (watch)
-        (speak)
-        (setup-testem :namespaces '[foo.core-test bar.util-test]) ;; put it before `cljs` task
+(deftask build []
+  (comp (setup-testem :namespaces '[foo.core-test bar.util-test]) ;; put it before `cljs` task
         (cljs :source-map true
               :optimizations :none)))
 ```
@@ -65,7 +63,7 @@ in your `build.boot`:
 start Boot in a terminal:
 
 ```
-boot cljs-auto-test
+boot watch speak build
 ```
 
 in another terminal, start Testem runner:
@@ -77,11 +75,11 @@ testem
 
 ### For continuous integration
 
-like for test-driven development, but run Testem in CI mode:
 
-```
+```bash
+boot build # just compile, not watch
 cd target
-testem ci
+testem ci # start Testem in CI mode
 ```
 
 Enjoy!
